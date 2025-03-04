@@ -25,7 +25,7 @@ function Course_Slider({ Courses }) {
 
           breakpoints={{
             1024: {
-              slidesPerView: 4,
+              slidesPerView: 3,
             },
           }}
           className="max-h-[30rem] pt-8 px-2"
