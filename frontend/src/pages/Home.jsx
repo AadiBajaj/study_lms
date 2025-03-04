@@ -89,7 +89,7 @@ const Home = () => {
     return (
         <React.Fragment>
 
-            <div>
+            {/* <div>
                 <div className="w-full h-[450px] md:h-[650px] absolute top-0 left-0 opacity-[0.3] overflow-hidden object-cover ">
                     <img src={backgroundImg} alt="Background"
                         className="w-full h-full object-cover "
@@ -97,11 +97,11 @@ const Home = () => {
 
                     <div className="absolute left-0 bottom-0 w-full h-[250px] opacity_layer_bg "></div>
                 </div>
-            </div>
+            </div> */}
 
             <div className=' '>
 
-                <div className='relative h-[450px] md:h-[550px] justify-center mx-auto flex flex-col w-11/12 max-w-maxContent items-center text-white '>
+                {/* <div className='relative h-[450px] md:h-[550px] justify-center mx-auto flex flex-col w-11/12 max-w-maxContent items-center text-white '>
 
                     <Link to={"/signup"}>
                         <div className='z-0 group p-1 mx-auto rounded-full bg-richblack-800 font-bold text-richblack-200
@@ -146,7 +146,7 @@ const Home = () => {
                             Book a Demo
                         </CTAButton>
                     </div>
-                </div>
+                </div> */}
 
 
                 <div className='relative mx-auto flex flex-col w-11/12 max-w-maxContent items-center text-white justify-between'>
@@ -187,7 +187,7 @@ const Home = () => {
 
 
 
-                    <div>
+                    {/* <div>
                         <CodeBlocks
                             position={"lg:flex-row-reverse"}
                             heading={
@@ -213,21 +213,7 @@ const Home = () => {
                             codeblock={`import React from "react";\n import CTAButton from "./Button";\nimport TypeAnimation from "react-type";\nimport { FaArrowRight } from "react-icons/fa";\n\nconst Home = () => {\nreturn (\n<div>Home</div>\n)\n}\nexport default Home;`}
                             backgroundGradient={"code-block2-grad"}
                         />
-                    </div>
-
-
-                    <div className='mx-auto box-content w-full max-w-maxContentTab px- py-12 lg:max-w-maxContent'>
-                        <h2 className='text-white mb-6 text-2xl '>
-                            Popular Picks for You 🏆
-                        </h2>
-                        <Course_Slider Courses={CatalogPageData?.selectedCategory?.courses} />
-                    </div>
-                    <div className=' mx-auto box-content w-full max-w-maxContentTab px- py-12 lg:max-w-maxContent'>
-                        <h2 className='text-white mb-6 text-2xl '>
-                            Top Enrollments Today 🔥
-                        </h2>
-                        <Course_Slider Courses={CatalogPageData?.mostSellingCourses} />
-                    </div>
+                    </div> */}                    
 
 
                     <ExploreMore />
@@ -286,7 +272,7 @@ const Home = () => {
 
 
                 <div className='mt-14 w-11/12 mx-auto max-w-maxContent flex-col items-center justify-between gap-8 first-letter bg-richblack-900 text-white'>
-                    <InstructorSection />
+                    {/* <InstructorSection /> */}
 
 
                     <h1 className="text-center text-3xl lg:text-4xl font-semibold mt-8 flex justify-center items-center gap-x-3">
