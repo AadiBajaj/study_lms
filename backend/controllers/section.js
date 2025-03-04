@@ -1,14 +1,10 @@
 const Course = require('../models/course');
 const Section = require('../models/section');
 
-// ================ create Section ================
 exports.createSection = async (req, res) => {
     try {
-        // extract data 
         const { sectionName, courseId } = req.body;
-        // console.log('sectionName, courseId = ', sectionName, ",  = ", courseId)
 
-        // validation
         if (!sectionName || !courseId) {
             return res.status(400).json({
                 success: false,
@@ -16,10 +12,8 @@ exports.createSection = async (req, res) => {
             })
         }
 
-        // create entry in DB
         const newSection = await Section.create({ sectionName });
 
-        // link - section id to current course 
         const updatedCourse = await Course.findByIdAndUpdate(courseId,
             {
                 $push: {
@@ -38,7 +32,6 @@ exports.createSection = async (req, res) => {
 
             })
 
-        // above -- populate remaining 
 
         res.status(200).json({
             success: true,
@@ -59,13 +52,10 @@ exports.createSection = async (req, res) => {
 }
 
 
-// ================ update Section ================
 exports.updateSection = async (req, res) => {
     try {
-        // extract data
         const { sectionName, sectionId, courseId } = req.body;
 
-        // validation
         if (!sectionId) {
             return res.status(400).json({
                 success: false,
@@ -73,7 +63,6 @@ exports.updateSection = async (req, res) => {
             });
         }
 
-        // update section name in DB
         await Section.findByIdAndUpdate(sectionId, { sectionName }, { new: true });
 
         const updatedCourseDetails = await Course.findById(courseId)
@@ -103,13 +92,10 @@ exports.updateSection = async (req, res) => {
 
 
 
-// ================ Delete Section ================
 exports.deleteSection = async (req, res) => {
     try {
         const { sectionId, courseId } = req.body;
-        // console.log('sectionId = ', sectionId);
 
-        // delete section by id from DB
         await Section.findByIdAndDelete(sectionId);
 
         const updatedCourseDetails = await Course.findById(courseId)

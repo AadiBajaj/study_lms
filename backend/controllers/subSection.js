@@ -4,17 +4,12 @@ const { uploadImageToCloudinary } = require('../utils/imageUploader');
 
 
 
-// ================ create SubSection ================
 exports.createSubSection = async (req, res) => {
     try {
-        // extract data
         const { title, description, sectionId } = req.body;
 
-        // extract video file
         const videoFile = req.files.video
-        // console.log('videoFile ', videoFile)
 
-        // validation
         if (!title || !description || !videoFile || !sectionId) {
             return res.status(400).json({
                 success: false,
@@ -22,22 +17,17 @@ exports.createSubSection = async (req, res) => {
             })
         }
 
-        // upload video to cloudinary
         const videoFileDetails = await uploadImageToCloudinary(videoFile, process.env.FOLDER_NAME);
 
-        // create entry in DB
         const SubSectionDetails = await SubSection.create(
             { title, timeDuration: videoFileDetails.duration, description, videoUrl: videoFileDetails.secure_url })
 
-        // link subsection id to section
-        // Update the corresponding section with the newly created sub-section
         const updatedSection = await Section.findByIdAndUpdate(
             { _id: sectionId },
             { $push: { subSection: SubSectionDetails._id } },
             { new: true }
         ).populate("subSection")
 
-        // return response
         res.status(200).json({
             success: true,
             data: updatedSection,
@@ -57,12 +47,10 @@ exports.createSubSection = async (req, res) => {
 
 
 
-// ================ Update SubSection ================
 exports.updateSubSection = async (req, res) => {
     try {
         const { sectionId, subSectionId, title, description } = req.body;
 
-        // validation
         if (!subSectionId) {
             return res.status(400).json({
                 success: false,
@@ -70,7 +58,6 @@ exports.updateSubSection = async (req, res) => {
             });
         }
 
-        // find in DB
         const subSection = await SubSection.findById(subSectionId);
 
         if (!subSection) {
@@ -80,7 +67,6 @@ exports.updateSubSection = async (req, res) => {
             })
         }
 
-        // add data
         if (title) {
             subSection.title = title;
         }
@@ -89,7 +75,6 @@ exports.updateSubSection = async (req, res) => {
             subSection.description = description;
         }
 
-        // upload video to cloudinary
         if (req.files && req.files.videoFile !== undefined) {
             const video = req.files.videoFile;
             const uploadDetails = await uploadImageToCloudinary(video, process.env.FOLDER_NAME);
@@ -97,7 +82,6 @@ exports.updateSubSection = async (req, res) => {
             subSection.timeDuration = uploadDetails.duration;
         }
 
-        // save data to DB
         await subSection.save();
 
         const updatedSection = await Section.findById(sectionId).populate("subSection")
@@ -121,7 +105,6 @@ exports.updateSubSection = async (req, res) => {
 
 
 
-// ================ Delete SubSection ================
 exports.deleteSubSection = async (req, res) => {
     try {
         const { subSectionId, sectionId } = req.body
@@ -134,7 +117,6 @@ exports.deleteSubSection = async (req, res) => {
             }
         )
 
-        // delete from DB
         const subSection = await SubSection.findByIdAndDelete({ _id: subSectionId })
 
         if (!subSection) {
@@ -145,10 +127,6 @@ exports.deleteSubSection = async (req, res) => {
 
         const updatedSection = await Section.findById(sectionId).populate('subSection')
 
-        // In frontned we have to take care - when subsection is deleted we are sending ,
-        // only section data not full course details as we do in others 
-
-        // success response
         return res.json({
             success: true,
             data: updatedSection,
