@@ -13,11 +13,10 @@ const OTPSchema = new mongoose.Schema({
     createdAt: {
         type: Date,
         default: Date.now,
-        expires: 5 * 60, // Expires in 5 minutes
+        expires: 5 * 60, // 5 minutes
     }
 });
 
-// Function to send email
 async function sendVerificationEmail(email, otp) {
     try {
         await mailSender(email, 'Verification Email from SkillNest', `Your OTP is: ${otp}`);
@@ -28,7 +27,6 @@ async function sendVerificationEmail(email, otp) {
     }
 }
 
-// Pre-save middleware (using function instead of arrow function)
 OTPSchema.pre('save', async function (next) {
     try {
         if (this.isNew) {
@@ -36,7 +34,7 @@ OTPSchema.pre('save', async function (next) {
         }
         next();
     } catch (error) {
-        next(error); // Pass error to Mongoose
+        next(error); 
     }
 });
 
