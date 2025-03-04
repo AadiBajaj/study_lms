@@ -4,7 +4,7 @@ const initialState = {
     openSideMenu: false,
     screenSize: undefined,
 
-    // course view side bar
+
     courseViewSidebar: false,
 }
 
@@ -13,7 +13,7 @@ const sidebarSlice = createSlice({
     initialState,
     reducers: {
         setOpenSideMenu: (state, action) => {
-            // console.log('action.payload == ', action.payload)
+
             state.openSideMenu = action.payload
         },
         setScreenSize: (state, action) => {

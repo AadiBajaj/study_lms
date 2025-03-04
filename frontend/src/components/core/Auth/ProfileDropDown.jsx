@@ -19,13 +19,13 @@ export default function ProfileDropdown() {
   useOnClickOutside(ref, () => setOpen(false))
 
   if (!user) return null
-  // console.log('user data from store = ', user )
+
 
 
 
   return (
 
-    // only for large devices
+
 
     <button className="relative hidden sm:flex" onClick={() => setOpen(true)}>
       <div className="flex items-center gap-x-1">

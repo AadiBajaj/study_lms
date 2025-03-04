@@ -16,7 +16,7 @@ body {
   box-sizing: border-box;
 }
 
-/* use in homePage */
+
 .homepage_bg {
   background: url('./assets/Images/bghome.svg');
 }
@@ -31,14 +31,13 @@ body {
 }
 
 
-/* ===== Scrollbar CSS ===== */
-/* Firefox */
+
 * {
   scrollbar-width: auto;
   scrollbar-color: #afb2bf;
 }
 
-/* Chrome, Edge, and Safari */
+
 *::-webkit-scrollbar {
   width: 7px;
 }
@@ -57,7 +56,7 @@ body {
 }
 
 
-/* loading spinner  */
+
 .custom-loader {
   width: 70px;
   height: 70px;
@@ -87,7 +86,7 @@ body {
 }
 
 
-/* Buttons */
+
 .yellowButton {
   @apply cursor-pointer rounded-md bg-yellow-50 px-[20px] py-[8px] font-semibold text-richblack-900 hover:bg-black hover:text-yellow-50 duration-300;
 }
@@ -100,7 +99,7 @@ body {
 
 
 
-/* Loading skeleton */
+
 .skeleton {
   position: relative;
   overflow: hidden;
@@ -131,9 +130,9 @@ body {
 }
 
 
-/* used in Navbar */
+
 .top {
-  /* background: rgba(0, 0, 0, 0.25); */
+
   background: #222831a1;
   backdrop-filter: blur(3.5px);
   -webkit-backdrop-filter: blur(3.5px);
@@ -160,7 +159,7 @@ body {
 
 
 
-/* used in code block component for background  */
+
 .code-block1-grad {
   position: absolute;
   width: 372.95px;
@@ -180,7 +179,7 @@ body {
 }
 
 
-/* code block 2 bg gradient */
+
 .code-block2-grad {
   position: absolute;
   width: 372.95px;
@@ -200,7 +199,7 @@ body {
   z-index: 0;
 }
 
-/* code block card glass background */
+
 .glass {
   background: rgba(255, 255, 255, 0);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
@@ -219,7 +218,7 @@ body {
 }
 
 
-/* used in home.jsx - random background  */
+
 .opacity_layer_bg {
   background: linear-gradient(180deg, rgba(4, 21, 45, 0) 0%, #04152d 79.17%);
 }

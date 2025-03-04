@@ -16,10 +16,10 @@ import { MdKeyboardArrowDown } from "react-icons/md"
 
 
 const Navbar = () => {
-    // console.log("Printing base url: ", import.meta.env.VITE_APP_BASE_URL);
+
     const { token } = useSelector((state) => state.auth);
     const { user } = useSelector((state) => state.profile);
-    // console.log('USER data from Navbar (store) = ', user)
+
     const { totalItems } = useSelector((state) => state.cart)
     const location = useLocation();
 
@@ -31,9 +31,6 @@ const Navbar = () => {
         try {
             setLoading(true)
             const res = await fetchCourseCategories();
-            // const result = await apiConnector("GET", categories.CATEGORIES_API);
-            // const result = await apiConnector('GET', 'http://localhost:4000/api/v1/course/showAllCategories');
-            // console.log("Printing Sublinks result:", result);
             setSubLinks(res);
         }
         catch (error) {
@@ -42,7 +39,7 @@ const Navbar = () => {
         setLoading(false)
     }
 
-    // console.log('data of store  = ', useSelector((state)=> state))
+
 
 
     useEffect(() => {
@@ -50,13 +47,13 @@ const Navbar = () => {
     }, [])
 
 
-    // when user click Navbar link then it will hold yellow color
+
     const matchRoute = (route) => {
         return matchPath({ path: route }, location.pathname);
     }
 
 
-    // when user scroll down , we will hide navbar , and if suddenly scroll up , we will show navbar 
+
     const [showNavbar, setShowNavbar] = useState('top');
     const [lastScrollY, setLastScrollY] = useState(0);
     useEffect(() => {
@@ -67,7 +64,6 @@ const Navbar = () => {
         }
     },)
 
-    // control Navbar
     const controlNavbar = () => {
         if (window.scrollY > 200) {
             if (window.scrollY > lastScrollY)
@@ -85,14 +81,14 @@ const Navbar = () => {
 
     return (
         <nav className={`z-[10] flex h-14 w-full items-center justify-center border-b-[1px] border-b-richblack-700 text-white translate-y-0 transition-all ${showNavbar} `}>
-             {/* <nav className={` fixed flex items-center justify-center w-full h-16 z-[10] translate-y-0 transition-all text-white ${showNavbar}`}> */}
+
             <div className='flex w-11/12 max-w-maxContent items-center justify-between '>
-                {/* logo */}
+
                 <Link to="/">
                     <img src={studyNotionLogo} width={160} height={42} loading='lazy' />
                 </Link>
 
-                {/* Nav Links - visible for only large devices*/}
+
                 <ul className='hidden sm:flex gap-x-6 text-richblack-25'>
                     {
                         NavbarLinks.map((link, index) => (
@@ -107,7 +103,7 @@ const Navbar = () => {
                                         >
                                             <p>{link.title}</p>
                                             <MdKeyboardArrowDown />
-                                            {/* drop down menu */}
+
                                             <div className="invisible absolute left-[50%] top-[50%] z-[1000] flex w-[200px] translate-x-[-50%] translate-y-[3em] 
                                                     flex-col rounded-lg bg-richblack-5 p-4 text-richblack-900 opacity-0 transition-all duration-150 group-hover:visible 
                                                     group-hover:translate-y-[1.65em] group-hover:opacity-100 lg:w-[300px]"
@@ -148,7 +144,7 @@ const Navbar = () => {
 
 
 
-                {/* Login/SignUp/Dashboard */}
+
                 <div className='flex gap-x-4 items-center'>
                     {
                         user && user?.accountType !== "Instructor" && (
@@ -165,7 +161,7 @@ const Navbar = () => {
                     {
                         token === null && (
                             <Link to="/login">
-                                {/* <button className='border border-richblack-700 bg-richblack-800 px-[12px] py-[8px] text-richblack-100 rounded-md focus:outline-8 outline-yellow-50'> */}
+
                                 <button className={` px-[12px] py-[8px] text-richblack-100 rounded-md 
                                  ${matchRoute('/login') ? 'border-[2.5px] border-yellow-50' : 'border border-richblack-700 bg-richblack-800'} `}
                                 >
@@ -177,7 +173,7 @@ const Navbar = () => {
                     {
                         token === null && (
                             <Link to="/signup">
-                                {/* <button className='border border-richblack-700 bg-richblack-800 px-[12px] py-[8px] text-richblack-100 rounded-md'> */}
+
                                 <button className={` px-[12px] py-[8px] text-richblack-100 rounded-md 
                                  ${matchRoute('/signup') ? 'border-[2.5px] border-yellow-50' : 'border border-richblack-700 bg-richblack-800'} `}
                                 >
@@ -187,10 +183,10 @@ const Navbar = () => {
                         )
                     }
 
-                    {/* for large devices */}
+
                     {token !== null && <ProfileDropDown />}
 
-                    {/* for small devices */}
+
                     {token !== null && <MobileProfileDropDown />}
 
                 </div>

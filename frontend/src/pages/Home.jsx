@@ -21,7 +21,7 @@ import { FaArrowRight } from "react-icons/fa"
 import { motion } from 'framer-motion'
 import { fadeIn, } from './../components/common/motionFrameVarients';
 
-// background random images
+
 import backgroundImg1 from '../assets/Images/random bg img/coding bg1.jpg'
 import backgroundImg2 from '../assets/Images/random bg img/coding bg2.jpg'
 import backgroundImg3 from '../assets/Images/random bg img/coding bg3.jpg'
@@ -49,13 +49,13 @@ const randomImges = [
     backgroundImg111,
 ];
 
-// hardcoded
+
 
 
 
 const Home = () => {
 
-    // get background random images
+
     const [backgroundImg, setBackgroundImg] = useState(null);
 
     useEffect(() => {
@@ -63,11 +63,11 @@ const Home = () => {
         setBackgroundImg(bg);
     }, [])
 
-    // console.log('bg ==== ', backgroundImg)
 
-    // get courses data
+
+
     const [CatalogPageData, setCatalogPageData] = useState(null);
-    const categoryID = "6506c9dff191d7ffdb4a3fe2" // hard coded
+    const categoryID = "6506c9dff191d7ffdb4a3fe2" 
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -75,7 +75,7 @@ const Home = () => {
 
             const result = await getCatalogPageData(categoryID, dispatch);
             setCatalogPageData(result);
-            // console.log("page data ==== ",CatalogPageData);
+
         }
         if (categoryID) {
             fetchCatalogPageData();
@@ -83,12 +83,12 @@ const Home = () => {
     }, [categoryID])
 
 
-    // console.log('================ CatalogPageData?.selectedCourses ================ ', CatalogPageData)
+
 
 
     return (
         <React.Fragment>
-            {/* background random image */}
+
             <div>
                 <div className="w-full h-[450px] md:h-[650px] absolute top-0 left-0 opacity-[0.3] overflow-hidden object-cover ">
                     <img src={backgroundImg} alt="Background"
@@ -100,7 +100,7 @@ const Home = () => {
             </div>
 
             <div className=' '>
-                {/*Section1  */}
+
                 <div className='relative h-[450px] md:h-[550px] justify-center mx-auto flex flex-col w-11/12 max-w-maxContent items-center text-white '>
 
                     <Link to={"/signup"}>
@@ -148,9 +148,9 @@ const Home = () => {
                     </div>
                 </div>
 
-                {/* animated code */}
+
                 <div className='relative mx-auto flex flex-col w-11/12 max-w-maxContent items-center text-white justify-between'>
-                    {/* Code block 1 */}
+
                     <div className=''>
                         <CodeBlocks
                             position={"lg:flex-row"}
@@ -186,7 +186,7 @@ const Home = () => {
                     </div>
 
 
-                    {/* Code block 2 */}
+
                     <div>
                         <CodeBlocks
                             position={"lg:flex-row-reverse"}
@@ -215,7 +215,7 @@ const Home = () => {
                         />
                     </div>
 
-                    {/* course slider */}
+
                     <div className='mx-auto box-content w-full max-w-maxContentTab px- py-12 lg:max-w-maxContent'>
                         <h2 className='text-white mb-6 text-2xl '>
                             Popular Picks for You 🏆
@@ -233,7 +233,7 @@ const Home = () => {
                     <ExploreMore />
                 </div>
 
-                {/*Section 2  */}
+
                 <div className='bg-pure-greys-5 text-richblack-700 '>
                     <div className='homepage_bg h-[310px]'>
                         <div className='w-11/12 max-w-maxContent flex flex-col items-center justify-between gap-5 mx-auto'>
@@ -274,7 +274,7 @@ const Home = () => {
                         </div>
 
 
-                        {/* leadership */}
+
                         <TimelineSection />
 
                         <LearningLanguageSection />
@@ -284,18 +284,18 @@ const Home = () => {
                 </div>
 
 
-                {/*Section 3 */}
+
                 <div className='mt-14 w-11/12 mx-auto max-w-maxContent flex-col items-center justify-between gap-8 first-letter bg-richblack-900 text-white'>
                     <InstructorSection />
 
-                    {/* Reviws from Other Learner */}
+
                     <h1 className="text-center text-3xl lg:text-4xl font-semibold mt-8 flex justify-center items-center gap-x-3">
                         Reviews from other learners <MdOutlineRateReview className='text-yellow-25' />
                     </h1>
                     <ReviewSlider />
                 </div>
 
-                {/*Footer */}
+
                 <Footer />
             </div >
         </React.Fragment>

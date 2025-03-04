@@ -14,7 +14,7 @@ const {
 
 
 
-// ================ update User Profile Image  ================
+
 export function updateUserProfileImage(token, formData) {
   return async (dispatch) => {
     const toastId = toast.loading("Loading...")
@@ -37,8 +37,6 @@ export function updateUserProfileImage(token, formData) {
       toast.success("Display Picture Updated Successfully")
       dispatch(setUser(response.data.data));
 
-      // below line is must - if not code - then as we refresh the page after changing profile image then old profile image will show 
-      // as we only changes in user(store) not in localStorage
       localStorage.setItem("user", JSON.stringify(response.data.data));
     } catch (error) {
       console.log("UPDATE_DISPLAY_PICTURE_API API ERROR............", error)
@@ -48,10 +46,9 @@ export function updateUserProfileImage(token, formData) {
   }
 }
 
-// ================ update Profile  ================
 export function updateProfile(token, formData) {
   return async (dispatch) => {
-    // console.log('This is formData for updated profile -> ', formData)
+
     const toastId = toast.loading("Loading...")
     try {
       const response = await apiConnector("PUT", UPDATE_PROFILE_API, formData, {
@@ -69,7 +66,7 @@ export function updateProfile(token, formData) {
       dispatch(setUser({ ...response.data.updatedUserDetails, image: userImage }))
 
    
-      // console.log('DATA = ', data)
+
       localStorage.setItem("user", JSON.stringify({ ...response.data.updatedUserDetails, image: userImage }));
       toast.success("Profile Updated Successfully")
     } catch (error) {
@@ -81,7 +78,7 @@ export function updateProfile(token, formData) {
 }
 
 
-// ================ change Password  ================
+
 export async function changePassword(token, formData) {
   const toastId = toast.loading("Loading...")
   try {
@@ -101,7 +98,7 @@ export async function changePassword(token, formData) {
   toast.dismiss(toastId)
 }
 
-// ================ delete Profile ================
+
 export function deleteProfile(token, navigate) {
   return async (dispatch) => {
     const toastId = toast.loading("Loading...")

@@ -14,7 +14,7 @@ const {
   RESETPASSWORD_API,
 } = endpoints
 
-// ================ send Otp ================
+
 export function sendOtp(email, navigate) {
   return async (dispatch) => {
 
@@ -26,9 +26,9 @@ export function sendOtp(email, navigate) {
         email,
         checkUserPresent: true,
       })
-      // console.log("SENDOTP API RESPONSE ---> ", response)
 
-      // console.log(response.data.success)
+
+
       if (!response.data.success) {
         throw new Error(response.data.message);
       }
@@ -38,14 +38,14 @@ export function sendOtp(email, navigate) {
     } catch (error) {
       console.log("SENDOTP API ERROR --> ", error);
       toast.error(error.response.data?.message);
-      // toast.error("Could Not Send OTP")
+
     }
     dispatch(setLoading(false));
     toast.dismiss(toastId);
   }
 }
 
-// ================ sign Up ================
+
 export function signUp(accountType, firstName, lastName, email, password, confirmPassword, otp, navigate) {
   return async (dispatch) => {
 
@@ -62,7 +62,7 @@ export function signUp(accountType, firstName, lastName, email, password, confir
         otp,
       })
 
-      // console.log("SIGNUP API RESPONSE --> ", response);
+
       if (!response.data.success) {
         toast.error(response.data.message);
         throw new Error(response.data.message);
@@ -72,9 +72,9 @@ export function signUp(accountType, firstName, lastName, email, password, confir
       navigate("/login");
     } catch (error) {
       console.log("SIGNUP API ERROR --> ", error);
-      // toast.error(error.response.data.message);
+
       toast.error("Invalid OTP");
-      // navigate("/signup")
+
     }
     dispatch(setLoading(false))
     toast.dismiss(toastId)
@@ -82,7 +82,7 @@ export function signUp(accountType, firstName, lastName, email, password, confir
 }
 
 
-// ================ Login ================
+
 export function login(email, password, navigate) {
   return async (dispatch) => {
 
@@ -109,7 +109,7 @@ export function login(email, password, navigate) {
         : `https://api.dicebear.com/5.x/initials/svg?seed=${response.data.user.firstName} ${response.data.user.lastName}`
 
       dispatch(setUser({ ...response.data.user, image: userImage }));
-      // console.log('User data - ', response.data.user);/
+
       localStorage.setItem("token", JSON.stringify(response.data?.token));
 
       localStorage.setItem("user", JSON.stringify({ ...response.data.user, image: userImage }));
@@ -125,7 +125,7 @@ export function login(email, password, navigate) {
 }
 
 
-// ================ get Password Reset Token ================
+
 export function getPasswordResetToken(email, setEmailSent) {
   return async (dispatch) => {
 
@@ -147,7 +147,7 @@ export function getPasswordResetToken(email, setEmailSent) {
     } catch (error) {
       console.log("RESET PASS TOKEN ERROR............", error)
       toast.error(error.response?.data?.message)
-      // toast.error("Failed To Send Reset Email")
+
     }
     toast.dismiss(toastId)
     dispatch(setLoading(false))
@@ -155,7 +155,7 @@ export function getPasswordResetToken(email, setEmailSent) {
 }
 
 
-// ================ reset Password ================
+
 export function resetPassword(password, confirmPassword, token, navigate) {
   return async (dispatch) => {
     const toastId = toast.loading("Loading...")
@@ -179,7 +179,7 @@ export function resetPassword(password, confirmPassword, token, navigate) {
     } catch (error) {
       console.log("RESETPASSWORD ERROR............", error)
       toast.error(error.response?.data?.message)
-      // toast.error("Failed To Reset Password");
+
     }
     toast.dismiss(toastId)
     dispatch(setLoading(false))
@@ -187,7 +187,7 @@ export function resetPassword(password, confirmPassword, token, navigate) {
 }
 
 
-// ================ Logout ================
+
 export function logout(navigate) {
   return (dispatch) => {
     dispatch(setToken(null))

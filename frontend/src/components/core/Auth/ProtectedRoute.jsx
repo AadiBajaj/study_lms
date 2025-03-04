@@ -6,7 +6,7 @@ const ProtectedRoute = ({ children }) => {
 
     const { token } = useSelector(state => state.auth);
 
-    // user logged in
+
     if (token !== null) {
         return children;
     }

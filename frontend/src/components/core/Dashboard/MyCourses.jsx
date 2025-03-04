@@ -19,7 +19,7 @@ export default function MyCourses() {
     const fetchCourses = async () => {
       setLoading(true);
       const result = await fetchInstructorCourses(token)
-      // console.log('Instructors all courses  ', result);
+
       setLoading(false);
       if (result) {
         setCourses(result)
@@ -29,7 +29,7 @@ export default function MyCourses() {
   }, [])
 
 
-  // Scroll to the top of the page when the component mounts
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [])
@@ -37,7 +37,7 @@ export default function MyCourses() {
   return (
     <div>
       <div className="mb-14 flex justify-between">
-        {/* <div className="mb-14 flex items-center justify-between"> */}
+
         <h1 className="text-4xl font-medium text-richblack-5 font-boogaloo text-center lg:text-left">My Courses</h1>
         <IconBtn
           text="Add Course"
@@ -47,7 +47,7 @@ export default function MyCourses() {
         </IconBtn>
       </div>
 
-      {/* course Table */}
+
       {courses && <CoursesTable courses={courses} setCourses={setCourses} loading={loading} setLoading={setLoading} />}
     </div>
   )

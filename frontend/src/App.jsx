@@ -44,7 +44,7 @@ function App() {
 
   const { user } = useSelector((state) => state.profile)
 
-  // Scroll to the top of the page when the component mounts
+
   const location = useLocation();
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -59,7 +59,7 @@ function App() {
   }, [])
 
 
-  // Go upward arrow - show , unshow
+
   const [showArrow, setShowArrow] = useState(false)
 
   const handleArrow = () => {
@@ -80,7 +80,7 @@ function App() {
     <div className="w-screen min-h-screen bg-richblack-900 flex flex-col font-inter">
       <Navbar />
 
-      {/* go upward arrow */}
+
       <button onClick={() => window.scrollTo(0, 0)}
         className={`bg-yellow-25 hover:bg-yellow-50 hover:scale-110 p-3 text-lg text-black rounded-2xl fixed right-3 z-10 duration-500 ease-in-out ${showArrow ? 'bottom-6' : '-bottom-24'} `} >
         <HiArrowNarrowUp />
@@ -93,7 +93,7 @@ function App() {
         <Route path="catalog/:catalogName" element={<Catalog />} />
         <Route path="courses/:courseId" element={<CourseDetails />} />
 
-        {/* Open Route - for Only Non Logged in User */}
+
         <Route
           path="signup" element={
             <OpenRoute>
@@ -137,8 +137,7 @@ function App() {
 
 
 
-        {/* Protected Route - for Only Logged in User */}
-        {/* Dashboard */}
+
         <Route element={
           <ProtectedRoute>
             <Dashboard />
@@ -148,8 +147,7 @@ function App() {
           <Route path="dashboard/my-profile" element={<MyProfile />} />
           <Route path="dashboard/Settings" element={<Settings />} />
 
-          {/* Route only for Students */}
-          {/* cart , EnrolledCourses */}
+
           {user?.accountType === ACCOUNT_TYPE.STUDENT && (
             <>
               <Route path="dashboard/cart" element={<Cart />} />
@@ -157,8 +155,7 @@ function App() {
             </>
           )}
 
-          {/* Route only for Instructors */}
-          {/* add course , MyCourses, EditCourse*/}
+
           {user?.accountType === ACCOUNT_TYPE.INSTRUCTOR && (
             <>
               <Route path="dashboard/instructor" element={<Instructor />} />
@@ -170,7 +167,7 @@ function App() {
         </Route>
 
 
-        {/* For the watching course lectures */}
+
         <Route
           element={
             <ProtectedRoute>
@@ -189,7 +186,7 @@ function App() {
 
 
 
-        {/* Page Not Found (404 Page ) */}
+
         <Route path="*" element={<PageNotFound />} />
 
       </Routes>

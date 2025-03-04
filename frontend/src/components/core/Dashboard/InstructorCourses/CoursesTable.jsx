@@ -30,7 +30,7 @@ export default function CoursesTable({ courses, setCourses, loading, setLoading 
   const [confirmationModal, setConfirmationModal] = useState(null)
   const TRUNCATE_LENGTH = 25
 
-  // delete course
+
   const handleCourseDelete = async (courseId) => {
     setLoading(true)
     const toastId = toast.loading('Deleting...');
@@ -42,11 +42,11 @@ export default function CoursesTable({ courses, setCourses, loading, setLoading 
     setConfirmationModal(null)
     setLoading(false)
     toast.dismiss(toastId)
-    // console.log("All Course ", courses)
+
   }
 
 
-  // Loading Skeleton
+
   const skItem = () => {
     return (
       <div className="flex border-b border-richblack-800 px-6 py-8 w-full">
@@ -68,7 +68,7 @@ export default function CoursesTable({ courses, setCourses, loading, setLoading 
   return (
     <>
       <Table className="rounded-2xl border border-richblack-800 ">
-        {/* heading */}
+
         <Thead>
           <Tr className="flex gap-x-10 rounded-t-3xl border-b border-b-richblack-800 px-6 py-2">
             <Th className="flex-1 text-left text-sm font-medium uppercase text-richblack-100">
@@ -87,7 +87,7 @@ export default function CoursesTable({ courses, setCourses, loading, setLoading 
         </Thead>
 
 
-        {/* loading Skeleton */}
+
         {loading && <div >
           {skItem()}
           {skItem()}
@@ -110,7 +110,7 @@ export default function CoursesTable({ courses, setCourses, loading, setLoading 
                   className="flex gap-x-10 border-b border-richblack-800 px-6 py-8"
                 >
                   <Td className="flex flex-1 gap-x-4 relative">
-                    {/* course Thumbnail */}
+
                     <Img
                       src={course?.thumbnail}
                       alt={course?.courseName}
@@ -128,17 +128,17 @@ export default function CoursesTable({ courses, setCourses, loading, setLoading 
                           : course.courseDescription}
                       </p>
 
-                      {/* created At */}
+
                       <p className="text-[12px] text-richblack-100 mt-4">
                         Created: {formatDate(course?.createdAt)}
                       </p>
 
-                      {/* updated At */}
+
                       <p className="text-[12px] text-richblack-100 ">
                         updated: {formatDate(course?.updatedAt)}
                       </p>
 
-                      {/* course status */}
+
                       {course.status === COURSE_STATUS.DRAFT ? (
                         <p className="mt-2 flex w-fit flex-row items-center gap-2 rounded-full bg-richblack-700 px-2 py-[2px] text-[12px] font-medium text-pink-100">
                           <HiClock size={14} />
@@ -155,12 +155,12 @@ export default function CoursesTable({ courses, setCourses, loading, setLoading 
                     </div>
                   </Td>
 
-                  {/* course duration */}
+
                   <Td className="text-sm font-medium text-richblack-100">2hr 30min</Td>
                   <Td className="text-sm font-medium text-richblack-100">₹{course.price}</Td>
 
                   <Td className="text-sm font-medium text-richblack-100 ">
-                    {/* Edit button */}
+
                     <button
                       disabled={loading}
                       onClick={() => { navigate(`/dashboard/edit-course/${course._id}`) }}
@@ -170,7 +170,7 @@ export default function CoursesTable({ courses, setCourses, loading, setLoading 
                       <FiEdit2 size={20} />
                     </button>
 
-                    {/* Delete button */}
+
                     <button
                       disabled={loading}
                       onClick={() => {
@@ -201,7 +201,7 @@ export default function CoursesTable({ courses, setCourses, loading, setLoading 
         </Tbody>
       </Table>
 
-      {/* Confirmation Modal */}
+
       {confirmationModal && <ConfirmationModal modalData={confirmationModal} />}
     </>
   )

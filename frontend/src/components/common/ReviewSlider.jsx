@@ -2,18 +2,17 @@ import React, { useEffect, useState } from "react"
 import ReactStars from "react-rating-stars-component"
 import Img from './Img';
 
-// Import Swiper React components
+
 import { Swiper, SwiperSlide } from "swiper/react"
-// import SwiperCore, { Autoplay, FreeMode, Pagination } from 'swiper/core';
-// Import Swiper styles
+
 import "swiper/css"
 import "swiper/css/free-mode"
 import "swiper/css/pagination"
 
-// Icons
+
 import { FaStar } from "react-icons/fa"
 
-// Get apiFunction and the endpoint
+
 import { apiConnector } from "../../services/apiConnector";
 import { ratingsEndpoints } from "../../services/apis"
 
@@ -39,7 +38,7 @@ function ReviewSlider() {
   }, [])
 
   
-  // console.log('reviews= ', reviews)
+
   if(!reviews) return;
 
 
@@ -47,18 +46,15 @@ function ReviewSlider() {
     <div className="text-white">
       <div className="my-[50px] h-[184px] max-w-maxContentTab lg:max-w-maxContent">
         <Swiper
-          // slidesPerView={4}
-          // slidesPerView={1}
           breakpoints={{
-            // Configure the number of slides per view for different screen sizes
             640: {
-              slidesPerView: 1, // Show 1 slide at a time on smaller screens
+              slidesPerView: 1, 
             },
             768: {
-              slidesPerView: 2, // Show 2 slides at a time on screens wider than 768px
+              slidesPerView: 2, 
             },
             1024: {
-              slidesPerView: 4, // Show 4 slides at a time on screens wider than 1024px
+              slidesPerView: 4, 
             },
           }}
           spaceBetween={25}
@@ -68,7 +64,7 @@ function ReviewSlider() {
             delay: 2500,
             disableOnInteraction: false,
           }}
-          // modules={[FreeMode, Pagination, Autoplay]}
+
           className="w-full "
         >
           {reviews.map((review, i) => {
@@ -104,12 +100,12 @@ function ReviewSlider() {
 
                   <div className="flex items-center gap-2 ">
                     <h3 className="font-semibold text-yellow-100">
-                      {/* {isNaN(review.rating) ? "N/A" : review.rating.toFixed(1)} */}
+
                       {review.rating}
                     </h3>
                     <ReactStars
                       count={5}
-                      value={parseInt(review.rating)} // Convert to a number
+                      value={parseInt(review.rating)} 
                       size={20}
                       edit={false}
                       activeColor="#ffd700"
@@ -121,7 +117,7 @@ function ReviewSlider() {
               </SwiperSlide>
             )
           })}
-          {/* <SwiperSlide>Slide 1</SwiperSlide> */}
+
         </Swiper>
       </div>
     </div>

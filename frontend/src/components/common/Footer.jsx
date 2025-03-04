@@ -4,10 +4,10 @@ import { Link } from "react-router-dom";
 import { ImGithub, ImLinkedin2 } from "react-icons/im";
 
 
-// Images
+
 import StudyNotionLogo from "../../assets/Logo/Logo-Full-Light.png";
 
-// footer data
+
 const BottomFooter = ["Privacy Policy", "Cookie Policy", "Terms"];
 const Resources = [
   "Articles",
@@ -30,7 +30,7 @@ const Footer = () => {
       <div className="flex lg:flex-row gap-8 items-center justify-between w-11/12 max-w-maxContent text-richblack-400 leading-6 mx-auto relative py-14">
         <div className="border-b w-[100%] flex flex-col lg:flex-row pb-5 border-richblack-700">
 
-          {/* Section 1 */}
+
           <div className="lg:w-[50%] flex flex-wrap flex-row justify-between lg:border-r lg:border-richblack-700 pl-3 lg:pr-5 gap-3">
             <div className="w-[30%] flex flex-col gap-3 lg:w-[30%] mb-7 lg:pl-0">
               <img src={StudyNotionLogo} alt="" className="object-contain" />
@@ -47,7 +47,7 @@ const Footer = () => {
                   );
                 })}
               </div>
-              {/* social icons */}
+
               <div className="flex gap-3 text-lg duration-200">
 
                 <svg className="w-5 cursor-pointer hover:scale-95 " xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" id="facebook"><path fill="#1976D2" d="M14 0H2C.897 0 0 .897 0 2v12c0 1.103.897 2 2 2h12c1.103 0 2-.897 2-2V2c0-1.103-.897-2-2-2z"></path><path fill="#FAFAFA" fill-rule="evenodd" d="M13.5 8H11V6c0-.552.448-.5 1-.5h1V3h-2a3 3 0 0 0-3 3v2H6v2.5h2V16h3v-5.5h1.5l1-2.5z" clip-rule="evenodd"></path></svg>
@@ -124,7 +124,7 @@ const Footer = () => {
           </div>
 
 
-          {/* Section 2 */}
+
           <div className="lg:w-[50%] flex flex-wrap flex-row justify-between pl-3 lg:pl-5 gap-3">
             {FooterLink2.map((ele, i) => {
               return (
@@ -152,9 +152,9 @@ const Footer = () => {
       </div>
 
 
-      {/* bottom footer */}
+
       <div className="flex flex-row items-center justify-between w-11/12 max-w-maxContent text-richblack-400 mx-auto pb-14 text-sm">
-        {/* Section 1 */}
+
         <div className="flex justify-between lg:items-start items-center flex-col lg:flex-row gap-3 w-full">
           <div className="flex ">
             {BottomFooter.map((ele, ind) => {

@@ -36,20 +36,20 @@ function CourseDetails() {
   const navigate = useNavigate()
 
 
-  // Getting courseId from url parameter
-  const { courseId } = useParams()
-  // console.log(`course id: ${courseId}`)
 
-  // Declear a state to save the course details
+  const { courseId } = useParams()
+
+
+
   const [response, setResponse] = useState(null)
   const [confirmationModal, setConfirmationModal] = useState(null)
 
   useEffect(() => {
-    // Calling fetchCourseDetails fucntion to fetch the details
+
     const fectchCourseDetailsData = async () => {
       try {
         const res = await fetchCourseDetails(courseId)
-        // console.log("course details res: ", res)
+
         setResponse(res)
       } catch (error) {
         console.log("Could not fetch Course Details")
@@ -58,21 +58,19 @@ function CourseDetails() {
     fectchCourseDetailsData();
   }, [courseId])
 
-  // console.log("response: ", response)
 
-  // Calculating Avg Review count
+
+
   const [avgReviewCount, setAvgReviewCount] = useState(0)
   useEffect(() => {
     const count = GetAvgRating(response?.data?.courseDetails.ratingAndReviews)
     setAvgReviewCount(count)
   }, [response])
-  // console.log("avgReviewCount: ", avgReviewCount)
 
-  // Collapse all
-  // const [collapse, setCollapse] = useState("")
+
   const [isActive, setIsActive] = useState(Array(0))
   const handleActive = (id) => {
-    // console.log("called", id)
+
     setIsActive(
       !isActive.includes(id)
         ? isActive.concat([id])
@@ -80,7 +78,7 @@ function CourseDetails() {
     )
   }
 
-  // Total number of lectures
+
   const [totalNoOfLectures, setTotalNoOfLectures] = useState(0)
   useEffect(() => {
     let lectures = 0
@@ -90,13 +88,13 @@ function CourseDetails() {
     setTotalNoOfLectures(lectures)
   }, [response])
 
-  // Scroll to the top of the page when the component mounts
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [])
 
 
-  // Loading skeleton
+
   if (paymentLoading || loading || !response) {
     return (
       <div className={`mt-24 p-5 flex flex-col justify-center gap-4  `}>
@@ -109,7 +107,7 @@ function CourseDetails() {
         <p className="h-4 w-[75%] lg:w-[30%] rounded-xl skeleton"></p>
         <p className="h-4 w-[35%] lg:w-[10%] rounded-xl skeleton"></p>
 
-        {/* Floating Courses Card */}
+
         <div className="right-[1.5rem] top-[20%] hidden lg:block lg:absolute min-h-[450px] w-1/3 max-w-[410px] 
             translate-y-24 md:translate-y-0 rounded-xl skeleton">
         </div>
@@ -120,7 +118,7 @@ function CourseDetails() {
   }
 
 
-  // extract course data
+
   const {
     _id: course_id,
     courseName,
@@ -136,7 +134,7 @@ function CourseDetails() {
     tag
   } = response?.data?.courseDetails
 
-  // Buy Course handler
+
   const handleBuyCourse = () => {
     if (token) {
       const coursesId = [courseId]
@@ -153,7 +151,7 @@ function CourseDetails() {
     })
   }
 
-  // Add to cart Course handler
+
   const handleAddToCart = () => {
     if (user && user?.accountType === ACCOUNT_TYPE.INSTRUCTOR) {
       toast.error("You are an Instructor. You can't buy a course.")
@@ -178,16 +176,16 @@ function CourseDetails() {
   return (
     <>
       <div className={`relative w-full bg-richblack-800`}>
-        {/* Hero Section */}
+
         <div className="mx-auto box-content px-4 lg:w-[1260px] 2xl:relative ">
           <div className="mx-auto grid min-h-[450px] max-w-maxContentTab justify-items-cente py-8 lg:mx-0 lg:justify-items-start lg:py-0 xl:max-w-[810px]">
 
-            {/* Go back button */}
+
             <div className="mb-5 lg:mt-10 lg:mb-0 z-[100]  " onClick={() => navigate(-1)}>
               <GiReturnArrow className="w-10 h-10 text-yellow-100 hover:text-yellow-50 cursor-pointer" />
             </div>
 
-            {/* will appear only for small size */}
+
             <div className="relative block max-h-[30rem] lg:hidden">
               <Img
                 src={thumbnail}
@@ -197,7 +195,7 @@ function CourseDetails() {
               <div className="absolute bottom-0 left-0 h-full w-full shadow-[#161D29_0px_-64px_36px_-28px_inset]"></div>
             </div>
 
-            {/* Course data */}
+
             <div className={`mb-5 flex flex-col justify-center gap-4 py-5 text-lg text-richblack-5`}>
               <p className="text-4xl font-bold text-richblack-5 sm:text-[42px]">{courseName}</p>
               <p className='text-richblack-200'>{courseDescription}</p>
@@ -217,7 +215,7 @@ function CourseDetails() {
               </div>
             </div>
 
-            {/* will appear only for small size */}
+
             <div className="flex w-full flex-col gap-4 border-y border-y-richblack-500 py-4 lg:hidden">
               <p className="space-x-3 pb-4 text-3xl font-semibold text-richblack-5">Rs. {price}</p>
               <button className="yellowButton" onClick={handleBuyCourse}>Buy Now</button>
@@ -225,7 +223,7 @@ function CourseDetails() {
             </div>
           </div>
 
-          {/* Floating Courses Card */}
+
           <div className="right-[1.5rem] top-[60px] mx-auto hidden lg:block lg:absolute min-h-[600px] w-1/3 max-w-[410px] translate-y-24 md:translate-y-0">
             <CourseDetailsCard
               course={response?.data?.courseDetails}
@@ -238,7 +236,7 @@ function CourseDetails() {
 
       <div className="mx-auto box-content px-4 text-start text-richblack-5 lg:w-[1260px]">
         <div className="mx-auto max-w-maxContentTab lg:mx-0 xl:max-w-[810px]">
-          {/* What will you learn section */}
+
           <div className="my-8 border border-richblack-600 p-8">
             <p className="text-3xl font-semibold">What you'll learn</p>
             <div className="mt-3">
@@ -253,7 +251,7 @@ function CourseDetails() {
             </div>
           </div>
 
-          {/* Tags */}
+
           <div className="flex flex-col lg:flex-row gap-4">
             <p className="text-xl font-bold">Tags</p>
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
@@ -267,7 +265,7 @@ function CourseDetails() {
             </div>
           </div>
 
-          {/* Course Content Section */}
+
           <div className="max-w-[830px] mt-9">
             <div className="flex flex-col gap-3">
               <p className="text-[28px] font-semibold">Course Content</p>
@@ -290,7 +288,7 @@ function CourseDetails() {
               </div>
             </div>
 
-            {/* Course Details Accordion - section Subsection */}
+
             <div className="py-4 ">
               {courseContent?.map((course, index) => (
                 <CourseAccordionBar
@@ -302,7 +300,7 @@ function CourseDetails() {
               ))}
             </div>
 
-            {/* Author Details */}
+
             <div className="mb-12 py-4">
               <p className="text-[28px] font-semibold">Author</p>
               <div className="flex items-center gap-4 py-4">

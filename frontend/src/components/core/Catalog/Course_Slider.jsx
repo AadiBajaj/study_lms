@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react"
 
 
-// Import Swiper styles
+
 import "swiper/css"
 import "swiper/css/free-mode"
 import "swiper/css/pagination"
-// Import Swiper React components
+
 import { Swiper, SwiperSlide } from "swiper/react"
-// import {  Pagination } from "swiper"
+
 
 import Course_Card from "./Course_Card"
 
@@ -21,7 +21,7 @@ function Course_Slider({ Courses }) {
           slidesPerView={1}
           spaceBetween={25}
           loop={true}
-          // modules={[ Pagination]}
+
 
           breakpoints={{
             1024: {

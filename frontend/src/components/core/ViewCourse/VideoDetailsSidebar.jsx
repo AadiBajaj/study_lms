@@ -15,8 +15,8 @@ import { HiMenuAlt1 } from 'react-icons/hi'
 
 export default function VideoDetailsSidebar({ setReviewModal }) {
 
-  const [activeStatus, setActiveStatus] = useState("") // store curr section id
-  const [videoBarActive, setVideoBarActive] = useState("") // store curr SubSection Id
+  const [activeStatus, setActiveStatus] = useState("") 
+  const [videoBarActive, setVideoBarActive] = useState("") 
   const navigate = useNavigate()
   const location = useLocation()
   const dispatch = useDispatch();
@@ -33,7 +33,7 @@ export default function VideoDetailsSidebar({ setReviewModal }) {
   const { courseViewSidebar } = useSelector(state => state.sidebar)
 
 
-  // set which section - subSection is selected 
+
   useEffect(() => {
     ; (() => {
       if (!courseSectionData.length) return
@@ -54,7 +54,7 @@ export default function VideoDetailsSidebar({ setReviewModal }) {
         <div className="mx-5 flex flex-col items-start justify-between gap-2 gap-y-4 border-b border-richblack-600 py-5 text-lg font-bold text-richblack-25">
           <div className="flex w-full items-center justify-between ">
 
-            {/* open - close side bar icons */}
+
             <div
               className="sm:hidden text-white cursor-pointer "
               onClick={() => dispatch(setCourseViewSidebar(!courseViewSidebar))}
@@ -62,7 +62,7 @@ export default function VideoDetailsSidebar({ setReviewModal }) {
               {courseViewSidebar ? <IoMdClose size={33} /> : <HiMenuAlt1 size={33} />}
             </div>
 
-            {/* go back dashboard */}
+
             <button
               onClick={() => { navigate(`/dashboard/enrolled-courses`) }}
               className="flex h-[35px] w-[35px] items-center justify-center rounded-full bg-richblack-100 p-1 text-richblack-700 hover:scale-90"
@@ -71,15 +71,15 @@ export default function VideoDetailsSidebar({ setReviewModal }) {
               <IoIosArrowBack size={30} />
             </button>
 
-            {/* add review button */}
+
             <IconBtn
               text="Add Review"
-              // customClasses="ml-auto"
+
               onclick={() => setReviewModal(true)}
             />
           </div>
 
-          {/* course Name - total No Of Lectures*/}
+
           <div className="flex flex-col">
             <p>{courseEntireData?.courseName}</p>
             <p className="text-sm font-semibold text-richblack-500">
@@ -89,7 +89,7 @@ export default function VideoDetailsSidebar({ setReviewModal }) {
         </div>
 
 
-        {/* render all section -subSection */}
+
         <div className="h-[calc(100vh - 5rem)] overflow-y-auto">
           {courseSectionData.map((section, index) => (
             <div
@@ -97,7 +97,7 @@ export default function VideoDetailsSidebar({ setReviewModal }) {
               onClick={() => setActiveStatus(section?._id)}
               key={index}
             >
-              {/* Section */}
+
               <div className="flex justify-between bg-richblack-700 px-5 py-4">
                 <div className="w-[70%] font-semibold">
                   {section?.sectionName}
@@ -117,7 +117,7 @@ export default function VideoDetailsSidebar({ setReviewModal }) {
                 </div>
               </div>
 
-              {/* Sub Sections */}
+
               {activeStatus === section?._id && (
                 <div className="transition-[height] duration-500 ease-in-out">
                   {section.subSection.map((topic, i) => (

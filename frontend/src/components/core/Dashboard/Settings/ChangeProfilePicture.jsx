@@ -25,7 +25,7 @@ export default function ChangeProfilePicture() {
 
   const handleFileChange = (e) => {
     const file = e.target.files[0]
-    // console.log(file)
+
     if (file) {
       setProfileImage(file)
       previewFile(file)
@@ -42,7 +42,7 @@ export default function ChangeProfilePicture() {
 
   const handleFileUpload = () => {
     try {
-      // console.log("uploading...")
+
       setLoading(true)
       const formData = new FormData()
       formData.append("profileImage", profileImage)

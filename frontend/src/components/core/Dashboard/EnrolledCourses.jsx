@@ -14,7 +14,7 @@ export default function EnrolledCourses() {
 
   const [enrolledCourses, setEnrolledCourses] = useState(null)
 
-  // fetch all users enrolled courses
+
   const getEnrolledCourses = async () => {
     try {
       const res = await getUserEnrolledCourses(token);
@@ -28,7 +28,7 @@ export default function EnrolledCourses() {
     getEnrolledCourses();
   }, [])
 
-  // Loading Skeleton
+
   const sklItem = () => {
     return (
       <div className="flex border border-richblack-700 px-5 py-3 w-full">
@@ -49,7 +49,7 @@ export default function EnrolledCourses() {
     )
   }
 
-  // return if data is null
+
   if (enrolledCourses?.length == 0) {
     return (
       <p className="grid h-[50vh] w-full place-content-center text-center text-richblack-5 text-3xl">
@@ -64,7 +64,7 @@ export default function EnrolledCourses() {
       <div className="text-4xl text-richblack-5 font-boogaloo text-center sm:text-left">Enrolled Courses</div>
       {
         <div className="my-8 text-richblack-5">
-          {/* Headings */}
+
           <div className="flex rounded-t-2xl bg-richblack-800 ">
             <p className="w-[45%] px-5 py-3">Course Name</p>
             <p className="w-1/4 px-2 py-3">Duration</p>
@@ -72,7 +72,7 @@ export default function EnrolledCourses() {
           </div>
 
 
-          {/* loading Skeleton */}
+
           {!enrolledCourses && <div >
             {sklItem()}
             {sklItem()}
@@ -81,7 +81,7 @@ export default function EnrolledCourses() {
             {sklItem()}
           </div>}
 
-          {/* Course Names */}
+
           {
             enrolledCourses?.map((course, i, arr) => (
               <div
@@ -112,13 +112,11 @@ export default function EnrolledCourses() {
                   </div>
                 </div>
 
-                {/* only for smaller devices */}
-                {/* duration -  progress */}
                 <div className='sm:hidden'>
                   <div className=" px-2 py-3">{course?.totalDuration}</div>
 
                   <div className="flex sm:w-2/5 flex-col gap-2 px-2 py-3">
-                    {/* {console.log('Course ============== ', course.progressPercentage)} */}
+
 
                     <p>Progress: {course.progressPercentage || 0}%</p>
                     <ProgressBar
@@ -129,8 +127,6 @@ export default function EnrolledCourses() {
                   </div>
                 </div>
 
-                {/* only for larger devices */}
-                {/* duration -  progress */}
                 <div className="hidden w-1/5 sm:flex px-2 py-3">{course?.totalDuration}</div>
                 <div className="hidden sm:flex w-1/5 flex-col gap-2 px-2 py-3">
                   <p>Progress: {course.progressPercentage || 0}%</p>

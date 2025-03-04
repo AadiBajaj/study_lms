@@ -20,7 +20,7 @@ export default function RenderCartCourses() {
             } ${indx !== 0 && "mt-6"} `}
         >
           <div className="flex flex-1 flex-col gap-4 xl:flex-row">
-            {/* course thumbnail */}
+
             <Img
               src={course?.thumbnail}
               alt={course?.courseName}

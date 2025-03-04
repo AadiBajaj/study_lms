@@ -23,11 +23,11 @@ export default function ViewCourse() {
   const dispatch = useDispatch()
   const [reviewModal, setReviewModal] = useState(false)
 
-  // get Full Details Of Course
+
   useEffect(() => {
     ; (async () => {
       const courseData = await getFullDetailsOfCourse(courseId, token)
-      // console.log("Course Data here... ", courseData.courseDetails)
+
       dispatch(setCourseSectionData(courseData.courseDetails.courseContent))
       dispatch(setEntireCourseData(courseData.courseDetails))
       dispatch(setCompletedLectures(courseData.completedVideos))
@@ -41,11 +41,11 @@ export default function ViewCourse() {
   }, [])
 
 
-  // handle sidebar for small devices
+
   const { courseViewSidebar } = useSelector(state => state.sidebar)
   const [screenSize, setScreenSize] = useState(undefined)
 
-  // set curr screen Size
+
   useEffect(() => {
     const handleScreenSize = () => setScreenSize(window.innerWidth)
 
@@ -54,7 +54,7 @@ export default function ViewCourse() {
     return () => window.removeEventListener('resize', handleScreenSize);
   })
 
-  // close / open sidebar according screen size
+
   useEffect(() => {
     if (screenSize <= 640) {
       dispatch(setCourseViewSidebar(false))
@@ -65,7 +65,7 @@ export default function ViewCourse() {
   return (
     <>
       <div className="relative flex min-h-[calc(100vh-3.5rem)] ">
-        {/* view course side bar */}
+
         {courseViewSidebar && <VideoDetailsSidebar setReviewModal={setReviewModal} />}
 
         <div className="h-[calc(100vh-3.5rem)] flex-1 overflow-auto mt-14">

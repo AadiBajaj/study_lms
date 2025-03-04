@@ -23,17 +23,12 @@ export default function Sidebar() {
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
-  // to keep track of confirmation modal
+
   const [confirmationModal, setConfirmationModal] = useState(null)
 
 
-  // handle side bar menu - open / close
-  // const [openSideMenu, setOpenSideMenu] = useState(false)
-  // const [screenSize, setScreenSize] = useState(undefined)
 
   const { openSideMenu, screenSize } = useSelector((state) => state.sidebar)
-  // console.log('openSideMenu ======' , openSideMenu)
-  // console.log('screenSize ======' , screenSize)
 
   useEffect(() => {
     const handleResize = () => dispatch(setScreenSize(window.innerWidth))
@@ -43,7 +38,7 @@ export default function Sidebar() {
     return () => window.removeEventListener('resize', handleResize)
   }, [])
 
-  // If screen size is small then close the side bar
+
   useEffect(() => {
     if (screenSize <= 640) {
       dispatch(setOpenSideMenu(false))

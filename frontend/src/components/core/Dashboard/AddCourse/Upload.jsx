@@ -9,7 +9,7 @@ import { Player } from "video-react"
 
 
 export default function Upload({ name, label, register, setValue, errors, video = false, viewData = null, editData = null, }) {
-  // const { course } = useSelector((state) => state.course)
+
   const [selectedFile, setSelectedFile] = useState(null)
   const [previewSource, setPreviewSource] = useState(viewData ? viewData : editData ? editData : "")
   const inputRef = useRef(null)
@@ -30,7 +30,7 @@ export default function Upload({ name, label, register, setValue, errors, video 
   })
 
   const previewFile = (file) => {
-    // console.log(file)
+
     const reader = new FileReader()
     reader.readAsDataURL(file)
     reader.onloadend = () => {

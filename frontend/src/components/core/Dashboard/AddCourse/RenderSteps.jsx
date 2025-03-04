@@ -36,7 +36,7 @@ export default function RenderSteps() {
           <React.Fragment key={item.id}>
             <div
               className="flex flex-col items-center "
-              // key={item.id}
+
             >
               <div
                 className={`grid  aspect-square w-[34px] place-items-center rounded-full border-[1px] 
@@ -51,7 +51,7 @@ export default function RenderSteps() {
               </div>
             </div>
 
-            {/* dashes  */}
+
             {item.id !== steps.length && (
               <div
                 className={`h-[calc(34px/2)] w-[33%] border-dashed border-b-2 ${step > item.id ? "border-yellow-50" : "border-richblack-500"} `}
@@ -72,7 +72,7 @@ export default function RenderSteps() {
         ))}
       </div>
 
-      {/* Render specific component based on current step */}
+
       {step === 1 && <CourseInformationForm />}
       {step === 2 && <CourseBuilderForm />}
       {step === 3 && <PublishCourse />}

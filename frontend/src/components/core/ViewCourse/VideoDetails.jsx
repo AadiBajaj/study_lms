@@ -37,15 +37,15 @@ const VideoDetails = () => {
       if (!courseId && !sectionId && !subSectionId) {
         navigate(`/dashboard/enrolled-courses`)
       } else {
-        // console.log("courseSectionData", courseSectionData)
+
         const filteredData = courseSectionData.filter(
           (course) => course._id === sectionId
         )
-        // console.log("filteredData", filteredData)
+
         const filteredVideoData = filteredData?.[0]?.subSection.filter(
           (data) => data._id === subSectionId
         )
-        // console.log("filteredVideoData = ", filteredVideoData)
+
         if (filteredVideoData) setVideoData(filteredVideoData[0])
         setPreviewSource(courseEntireData.thumbnail)
         setVideoEnded(false)
@@ -53,7 +53,7 @@ const VideoDetails = () => {
     })()
   }, [courseSectionData, courseEntireData, location.pathname])
 
-  // check if the lecture is the first video of the course
+
   const isFirstVideo = () => {
     const currentSectionIndx = courseSectionData.findIndex((data) => data._id === sectionId)
 
@@ -66,9 +66,9 @@ const VideoDetails = () => {
     }
   }
 
-  // go to the next video
+
   const goToNextVideo = () => {
-    // console.log(courseSectionData)
+
 
     const currentSectionIndx = courseSectionData.findIndex((data) => data._id === sectionId)
 
@@ -76,7 +76,7 @@ const VideoDetails = () => {
 
     const currentSubSectionIndx = courseSectionData[currentSectionIndx].subSection.findIndex((data) => data._id === subSectionId)
 
-    // console.log("no of subsections", noOfSubsections)
+
 
     if (currentSubSectionIndx !== noOfSubsections - 1) {
       const nextSubSectionId = courseSectionData[currentSectionIndx].subSection[currentSubSectionIndx + 1]._id
@@ -89,7 +89,7 @@ const VideoDetails = () => {
     }
   }
 
-  // check if the lecture is the last video of the course
+
   const isLastVideo = () => {
     const currentSectionIndx = courseSectionData.findIndex((data) => data._id === sectionId)
 
@@ -109,9 +109,9 @@ const VideoDetails = () => {
     }
   }
 
-  // go to the previous video
+
   const goToPrevVideo = () => {
-    // console.log(courseSectionData)
+
 
     const currentSectionIndx = courseSectionData.findIndex((data) => data._id === sectionId)
 
@@ -134,7 +134,7 @@ const VideoDetails = () => {
     }
   }
 
-  // handle Lecture Completion
+
   const handleLectureCompletion = async () => {
     setLoading(true)
     const res = await markLectureAsComplete(
@@ -149,14 +149,13 @@ const VideoDetails = () => {
 
   const { courseViewSidebar } = useSelector(state => state.sidebar)
 
-  // this will hide course video , title , desc, if sidebar is open in small device
-  // for good looking i have try this 
+
   if (courseViewSidebar && window.innerWidth <= 640) return;
 
   return (
     <div className="flex flex-col gap-5 text-white">
 
-      {/* open - close side bar icons */}
+
       <div className="sm:hidden text-white absolute left-7 top-3 cursor-pointer " onClick={() => dispatch(setCourseViewSidebar(!courseViewSidebar))}>
         {
           !courseViewSidebar && <HiMenuAlt1 size={33} />
@@ -180,7 +179,7 @@ const VideoDetails = () => {
           src={videoData?.videoUrl}
         >
           <BigPlayButton position="center" />
-          {/* Render When Video Ends */}
+
           {videoEnded && (
             <div
               style={{
@@ -201,7 +200,7 @@ const VideoDetails = () => {
                 disabled={loading}
                 onclick={() => {
                   if (playerRef?.current) {
-                    // set the current time of the video to 0
+
                     playerRef?.current?.seek(0)
                     setVideoEnded(false)
                   }

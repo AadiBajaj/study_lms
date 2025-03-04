@@ -28,15 +28,15 @@ export default function CourseInformationForm() {
       setLoading(true)
       const categories = await fetchCourseCategories();
       if (categories.length > 0) {
-        // console.log("categories", categories)
+
         setCourseCategories(categories)
       }
       setLoading(false)
     }
-    // if form is in edit mode 
-    // It will add value in input field
+
+
     if (editCourse) {
-      // console.log("editCourse ", editCourse)
+
       setValue("courseTitle", course.courseName)
       setValue("courseShortDesc", course.courseDescription)
       setValue("coursePrice", course.price)
@@ -54,7 +54,7 @@ export default function CourseInformationForm() {
 
   const isFormUpdated = () => {
     const currentValues = getValues()
-    // console.log("changes after editing form values:", currentValues)
+
     if (
       currentValues.courseTitle !== course.courseName ||
       currentValues.courseShortDesc !== course.courseDescription ||
@@ -69,19 +69,15 @@ export default function CourseInformationForm() {
     return false
   }
 
-  //   handle next button click
+
   const onSubmit = async (data) => {
-    // console.log(data)
+
 
     if (editCourse) {
-      // const currentValues = getValues()
-      // console.log("changes after editing form values:", currentValues)
-      // console.log("now course:", course)
-      // console.log("Has Form Changed:", isFormUpdated())
       if (isFormUpdated()) {
         const currentValues = getValues()
         const formData = new FormData()
-        // console.log('data -> ',data)
+
         formData.append("courseId", course._id)
         if (currentValues.courseTitle !== course.courseName) {
           formData.append("courseName", data.courseTitle)
@@ -94,7 +90,7 @@ export default function CourseInformationForm() {
         }
         if (currentValues.courseTags.toString() !== course.tag.toString()) {
           formData.append("tag", JSON.stringify(data.courseTags))
-          // formData.append("tag", data.courseTags)
+
         }
         if (currentValues.courseBenefits !== course.whatYouWillLearn) {
           formData.append("whatYouWillLearn", data.courseBenefits)
@@ -109,7 +105,7 @@ export default function CourseInformationForm() {
           formData.append("thumbnailImage", data.courseImage)
         }
 
-        // send data to backend
+
         setLoading(true)
         const result = await editCourseDetails(formData, token)
         setLoading(false)
@@ -123,7 +119,7 @@ export default function CourseInformationForm() {
       return
     }
 
-    // user has visted first time to step 1 
+
     const formData = new FormData()
     formData.append("courseName", data.courseTitle)
     formData.append("courseDescription", data.courseShortDesc)
@@ -148,7 +144,7 @@ export default function CourseInformationForm() {
       onSubmit={handleSubmit(onSubmit)}
       className="space-y-8 rounded-md border-[1px] border-richblack-700 bg-richblack-800 p-6 "
     >
-      {/* Course Title */}
+
       <div className="flex flex-col space-y-2">
         <label className="text-sm text-richblack-5" htmlFor="courseTitle">
           Course Title <sup className="text-pink-200">*</sup>
@@ -166,7 +162,7 @@ export default function CourseInformationForm() {
         )}
       </div>
 
-      {/* Course Short Description */}
+
       <div className="flex flex-col space-y-2">
         <label className="text-sm text-richblack-5" htmlFor="courseShortDesc">
           Course Short Description <sup className="text-pink-200">*</sup>
@@ -184,7 +180,7 @@ export default function CourseInformationForm() {
         )}
       </div>
 
-      {/* Course Price */}
+
       <div className="flex flex-col space-y-2">
         <label className="text-sm text-richblack-5" htmlFor="coursePrice">
           Course Price <sup className="text-pink-200">*</sup>
@@ -212,7 +208,7 @@ export default function CourseInformationForm() {
         )}
       </div>
 
-      {/* Course Category */}
+
       <div className="flex flex-col space-y-2 ">
         <label className="text-sm text-richblack-5" htmlFor="courseCategory">
           Course Category <sup className="text-pink-200">*</sup>
@@ -240,7 +236,7 @@ export default function CourseInformationForm() {
         )}
       </div>
 
-      {/* Course Tags */}
+
       <ChipInput
         label="Tags"
         name="courseTags"
@@ -250,7 +246,7 @@ export default function CourseInformationForm() {
         setValue={setValue}
       />
 
-      {/* Course Thumbnail Image */}
+
       <Upload
         name="courseImage"
         label="Course Thumbnail"
@@ -260,7 +256,7 @@ export default function CourseInformationForm() {
         editData={editCourse ? course?.thumbnail : null}
       />
 
-      {/* Benefits of the course */}
+
       <div className="flex flex-col space-y-2">
         <label className="text-sm text-richblack-5" htmlFor="courseBenefits">
           Benefits of the course <sup className="text-pink-200">*</sup>
@@ -278,7 +274,7 @@ export default function CourseInformationForm() {
         )}
       </div>
 
-      {/* Requirements/Instructions */}
+
       <RequirementsField
         name="courseRequirements"
         label="Requirements/Instructions"
@@ -287,7 +283,7 @@ export default function CourseInformationForm() {
         errors={errors}
       />
 
-      {/* Next Button */}
+
       <div className="flex justify-end gap-x-2">
         {editCourse && (
           <button

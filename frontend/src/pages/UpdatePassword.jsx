@@ -31,8 +31,6 @@ function UpdatePassword() {
   }
 
 
-  // const params = useParams()
-  // console.log('Params data = ', params)
 
   const handleOnSubmit = (e) => {
     e.preventDefault()

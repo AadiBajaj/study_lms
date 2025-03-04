@@ -16,21 +16,11 @@ import { PiNotebook } from "react-icons/pi"
 import { fetchCourseCategories } from './../../../services/operations/courseDetailsAPI';
 
 
-// const CatalogDropDown = ({ subLinks }) => {
-//     if (!subLinks) return
-
-//     return (
-//         <div>
-
-//         </div>
-//     )
-// }
-
 
 export default function MobileProfileDropDown() {
     const { user } = useSelector((state) => state.profile)
     if (!user) return null
-    // console.log('user data from store = ', user )
+
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -48,9 +38,6 @@ export default function MobileProfileDropDown() {
         try {
             setLoading(true)
             const res = await fetchCourseCategories();
-            // const result = await apiConnector("GET", categories.CATEGORIES_API);
-            // const result = await apiConnector('GET', 'http://localhost:4000/api/v1/course/showAllCategories');
-            // console.log("Printing Sublinks result:", result);
             setSubLinks(res);
         }
         catch (error) {
@@ -59,7 +46,6 @@ export default function MobileProfileDropDown() {
         setLoading(false)
     }
 
-    // console.log('data of store  = ', useSelector((state)=> state))
 
 
     useEffect(() => {
@@ -69,7 +55,7 @@ export default function MobileProfileDropDown() {
 
     return (
 
-        // only for small devices
+
 
         <button className="relative sm:hidden" onClick={() => setOpen(true)}>
             <div className="flex items-center gap-x-1">
@@ -136,7 +122,7 @@ export default function MobileProfileDropDown() {
                     </div>
 
 
-                    {/* <CatalogDropDown subLinks={subLinks} /> */}
+
 
                 </div>
             )}

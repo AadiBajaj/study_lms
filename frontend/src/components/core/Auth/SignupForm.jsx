@@ -15,7 +15,7 @@ function SignupForm() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  // student or instructor
+
   const [accountType, setAccountType] = useState(ACCOUNT_TYPE.STUDENT);
 
   const [formData, setFormData] = useState({
@@ -31,17 +31,17 @@ function SignupForm() {
 
   const { firstName, lastName, email, password, confirmPassword } = formData;
 
-  // Handle input fields, when some value changes
+
   const handleOnChange = (e) => {
     setFormData((prevData) => ({
       ...prevData,
       [e.target.name]: e.target.value,
     }));
 
-    // console.log('signup form data - ', formData);
+
   };
 
-  // Handle Form Submission
+
   const handleOnSubmit = (e) => {
     e.preventDefault();
 
@@ -54,13 +54,11 @@ function SignupForm() {
       accountType,
     };
 
-    // Setting signup data to state
-    // To be used after otp verification
     dispatch(setSignupData(signupData));
-    // Send OTP to user for verification
+
     dispatch(sendOtp(formData.email, navigate));
 
-    // Reset form data
+
     setFormData({
       firstName: "",
       lastName: "",
@@ -71,7 +69,7 @@ function SignupForm() {
     setAccountType(ACCOUNT_TYPE.STUDENT);
   };
 
-  // data to pass to Tab component
+
   const tabData = [
     {
       id: 1,
@@ -87,13 +85,13 @@ function SignupForm() {
 
   return (
     <div>
-      {/* Tab */}
+
       <Tab tabData={tabData} field={accountType} setField={setAccountType} />
 
-      {/* Form */}
+
       <form onSubmit={handleOnSubmit} className="flex w-full flex-col gap-y-4">
         <div className="flex gap-x-4">
-          {/* First Name */}
+
           <label>
             <p className="mb-1 text-[0.875rem] leading-[1.375rem] text-richblack-5">
               First Name <sup className="text-pink-200">*</sup>
@@ -112,7 +110,7 @@ function SignupForm() {
             />
           </label>
 
-          {/* Last Name */}
+
           <label>
             <p className="mb-1 text-[0.875rem] leading-[1.375rem] text-richblack-5">
               Last Name <sup className="text-pink-200">*</sup>
@@ -132,7 +130,7 @@ function SignupForm() {
           </label>
         </div>
 
-        {/* Email Address */}
+
         <label className="w-full">
           <p className="mb-1 text-[0.875rem] leading-[1.375rem] text-richblack-5">
             Email Address <sup className="text-pink-200">*</sup>
@@ -153,7 +151,7 @@ function SignupForm() {
 
 
         <div className="flex gap-x-4">
-          {/* Create Password */}
+
           <label className="relative">
             <p className="mb-1 text-[0.875rem] leading-[1.375rem] text-richblack-5">
               Create Password <sup className="text-pink-200">*</sup>
@@ -182,7 +180,7 @@ function SignupForm() {
             </span>
           </label>
 
-          {/* Confirm Password  */}
+
           <label className="relative">
             <p className="mb-1 text-[0.875rem] leading-[1.375rem] text-richblack-5">
               Confirm Password <sup className="text-pink-200">*</sup>

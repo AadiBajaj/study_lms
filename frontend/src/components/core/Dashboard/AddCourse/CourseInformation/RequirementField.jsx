@@ -22,7 +22,7 @@ export default function RequirementsField({ name, label, register, setValue, err
     setValue(name, requirementsList)
   }, [requirementsList])
 
-  // add instruction
+
   const handleAddRequirement = () => {
     if (requirement && !requirementsList.includes(requirement)) {
       setRequirementsList([...requirementsList, requirement])
@@ -30,7 +30,7 @@ export default function RequirementsField({ name, label, register, setValue, err
     }
   }
 
-  // delete instruction
+
   const handleRemoveRequirement = (index) => {
     const updatedRequirements = [...requirementsList]
     updatedRequirements.splice(index, 1)
@@ -70,7 +70,7 @@ export default function RequirementsField({ name, label, register, setValue, err
                 className="ml-2 text-xs text-pure-greys-300 "
                 onClick={() => handleRemoveRequirement(index)}
               >
-                {/* clear  */}
+
                 <RiDeleteBin6Line className="text-pink-200 text-sm hover:scale-125 duration-200" />
               </button>
             </li>
