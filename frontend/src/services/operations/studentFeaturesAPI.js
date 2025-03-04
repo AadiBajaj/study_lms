@@ -1,7 +1,6 @@
 import { toast } from "react-hot-toast";
 import { studentEndpoints } from "../apis";
 import { apiConnector } from "../apiConnector";
-import rzpLogo from "../../assets/Logo/rzp_logo.png"
 import { setPaymentLoading } from "../../slices/courseSlice";
 import { resetCart } from "../../slices/cartSlice";
 
@@ -56,9 +55,8 @@ export async function buyCourse(token, coursesId, userDetails, navigate, dispatc
             currency: orderResponse.data.message.currency,
             amount: orderResponse.data.message.amount,
             order_id: orderResponse.data.message.id,
-            name: "StudyNotion",
+            name: "SkillNest",
             description: "Thank You for Purchasing the Course",
-            image: rzpLogo,
             prefill: {
                 name: userDetails.firstName,
                 email: userDetails.email
