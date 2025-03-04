@@ -6,7 +6,6 @@ exports.uploadImageToCloudinary = async (file, folder, height, quality) => {
         if (height) options.height = height;
         if (quality) options.quality = quality;
 
-        // options.resourse_type = 'auto';
         options.resource_type = 'auto';
         return await cloudinary.uploader.upload(file.tempFilePath, options);
     }
@@ -18,7 +17,6 @@ exports.uploadImageToCloudinary = async (file, folder, height, quality) => {
 
 
 
-// Function to delete a resource by public ID
 exports.deleteResourceFromCloudinary = async (url) => {
     if (!url) return;
 

@@ -13,7 +13,7 @@ const mailSender = async (email, title, body) => {
         });
 
         const info = await transporter.sendMail({
-            from: process.env.MAIL_USER,  // ✅ Use a valid email
+            from: process.env.MAIL_USER,  
             to: email,
             subject: title,
             html: body
@@ -23,7 +23,7 @@ const mailSender = async (email, title, body) => {
         return info;
     } catch (error) {
         console.error('Error while sending mail:', error);
-        throw error; // ✅ Re-throw for better debugging
+        throw error; 
     }
 };
 
